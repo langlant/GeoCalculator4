@@ -28,7 +28,7 @@ const Settings = ({ navigation, route }) => {
             )}
         )
 
-      });
+    
 
     return(
         <Padder>
