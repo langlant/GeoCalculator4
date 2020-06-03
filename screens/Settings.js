@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { Dropdown } from "react-native-material-dropdown";
-import {initGeoCalcDb, writeData, updateData, deleteData, setupDataListener} from '../helpers/fb-geocalculator';
+
 
 const SettingsScreen = ({ route, navigation }) => {
   const {defaultDistanceUnits, defaultBearingUnits} = route.params;

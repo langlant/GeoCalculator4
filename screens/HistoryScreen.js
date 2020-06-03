@@ -1,8 +1,6 @@
 import React, { useState, useRef,   useEffect } from "react";
-import { StyleSheet, Text, Keyboard, TouchableOpacity, View, TouchableWithoutFeedback, TouchableHighlight } from "react-native";
-import { Button, Input} from "react-native-elements";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {initGeoCalcDb, writeData, updateData, deleteData, setupDataListener} from '../helpers/fb-geocalculator';
-import CalculatorScreen from './CalculatorScreen';
 import { FlatList } from "react-native-gesture-handler";
 
 const HistoryScreen = ({ route, navigation }) => {

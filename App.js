@@ -16,6 +16,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name = "Geo Calculator" component = {CalculatorScreen} />
         <Stack.Screen name = "Settings" component = {Settings} />
+        <Stack.Screen name = "History" component = {HistoryScreen}/>
       </Stack.Navigator>
     
     </TouchableWithoutFeedback>
