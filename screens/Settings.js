@@ -1,62 +1,93 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, Keyboard, View } from "react-native";
-import { Input, Button } from "react-native-elements";
-import Padder from "../components/Padder";
+import React, { useState } from "react";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { Dropdown } from "react-native-material-dropdown";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Feather } from '@expo/vector-icons';
+//import {initGeoCalcDb, writeData, setupDataListener} from '../helpers/fb-geocalculator';
 
-const Settings = ({ navigation, route }) => {
+const SettingsScreen = ({ route, navigation }) => {
+  const {defaultDistanceUnits, defaultBearingUnits} = route.params;
+  const [selectedDistanceUnits, setSelectedDistanceUnits] = useState(defaultDistanceUnits);
+  const [selectedBearingUnits, setSelectedBearingUnits] = useState(defaultBearingUnits);
 
-    const [distPick, setDistPick] = useState('Kilometers');
-    const [bearingPick, setBearingPick] = useState('Degrees');
-    const dUnits = ['Kilometers', 'Miles'];
-    const bUnits = ['Degrees', 'Mils'];
+  const distanceUnits = [
+    {
+      value: "Miles",
+    },
+    {
+      value: "Kilometers",
+    },
+  ];
 
-    navigation.setOptions({
-        headerRight: () => (
-          <TouchableOpacity onPress={() => navigation.navigate(
-            'CalculatorScreen', {distPick, bearingPick})}>
-            <Feather style={{ marginRight: 10 }} name="save" size={24} />
-          </TouchableOpacity>
-        ),
-        headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.navigate(
-                'CalculatorScreen')}>
-                    <Feather style={{ marginLeft: 10}} name="trash" size={24}/>
-                </TouchableOpacity>
-            )}
-        )
+  const bearingUnits = [
+    {
+      value: "Degrees",
+    },
+    {
+      value: "Mils",
+    },
+  ];
 
-    
+  navigation.setOptions({
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate('Geo Calculator')}>
+        <Text style={styles.headerButton}> Cancel </Text>
+      </TouchableOpacity>
+    ),
+    headerLeft: () => (
+      <TouchableOpacity
+        onPress={() => {
+          // navigate back with new settings.
+          navigation.navigate('Geo Calculator', {
+            selectedDistanceUnits,
+            selectedBearingUnits,
+          });
+        }}
+      >
+        <Text style={styles.headerButton}> Save </Text>
+      </TouchableOpacity>
+    ),
+  });
 
-    return(
-        <Padder>
+  return (
+    <View style={styles.screen}>
+      <View style={styles.container}>
+          <View >
             <Dropdown
-            label = 'Distance Type'
-            value = {distPick}
-            data = {dUnits}
-            onChangeText = {(text) => setDistPick(text)}
-
+              value={selectedDistanceUnits}
+              onChangeText={(text) => setSelectedDistanceUnits(text)}
+              label="Distance Units"
+              data={distanceUnits}
             />
+          </View>
+          <View>
             <Dropdown
-            label = 'Navigational Type'
-            value = {bearingPick}
-            data = {bUnits}
-            onChangeText = {(text) => setBearingPick(text)}
-
-            /> 
-      </Padder>
-    );
-}
+              value={selectedBearingUnits}
+              onChangeText={(text) => setSelectedBearingUnits(text)}
+              label="Bearing Units"
+              data={bearingUnits}
+            />
+        </View>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    header: {
-        textAlign: 'center',
-        backgroundColor: "#0098c7",
-        color: 'white',
-        fontSize: 25
-    },
+  screen: {
+    flex: 1,
+    padding: 4,
+    paddingTop: 10,
+    backgroundColor: "#E8EAF6",
+  },
+  container: {
+    marginHorizontal: 4,
+    marginVertical: 8,
+    paddingHorizontal: 8,
+  },
+  headerButton: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
 });
 
-export default Settings;
+export default SettingsScreen;
