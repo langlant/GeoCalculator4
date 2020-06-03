@@ -10,29 +10,56 @@ const HistoryScreen = ({ route, navigation }) => {
 
     const { currentHistory } = route.params;
 
+    const onPress = (lat1, lon1, lat2, lon2) => {
+        navigation.navigate('Geo Calculator', {
+            lat1, lon2, lat2, lon2
+          });
+      };
+
     const rHistory = ({item, index}) =>{
         return (
     
-        <TouchableOpacity onPress={()=> buttonPress(item)}>
+        <TouchableOpacity onPress={()=> buttonPress(item.lat1, item.lon1, item.lat2, item.lon2, item.timestamp)}>
             <View>
-                 <Text> Start: {item.p1.lat1}, {item.p1.lon1}</Text>
-                 <Text> End: {item.p2.lat2}, {item.p2.lon2}</Text>
+                 <Text> Start: {item.lat1}, {item.lon1}</Text>
+                 <Text> End: {item.lat2}, {item.lon2}</Text>
                  <Text>Time Stamp: {item.timestamp}</Text>
             </View>
-            navigation.navigate('Geo Calculator', {p1.lat1, p1.lon1, p2.lat2, p2.lon2});
         </TouchableOpacity>
-        
         );
     }
 
     return(
-        <FlatList  
-            keyExtractor={(item) => item.timestamp}
-            data = {currentHistory}
-            renderItem={rHistory}
+        <View style={styles.screen}>
+            <View style={styles.container}>
+            <FlatList  
+                keyExtractor={(item) => item.timestamp}
+                data = {currentHistory}
+                renderItem={rHistory}
             />
+            </View>
+        </View>
     );
 
 }
+
+const styles = StyleSheet.create({
+    screen: {
+      flex: 1,
+      padding: 4,
+      paddingTop: 10,
+      backgroundColor: "#E8EAF6",
+    },
+    container: {
+      marginHorizontal: 4,
+      marginVertical: 8,
+      paddingHorizontal: 8,
+    },
+    headerButton: {
+      color: '#fff',
+      fontWeight: 'bold',
+    },
+  
+  });
 
 export default HistoryScreen;
