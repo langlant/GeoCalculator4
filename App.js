@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import CalculatorScreen from './screens/CalculatorScreen';
 import Settings from './screens/Settings';
+import HistoryScreen from './screens/HistoryScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
