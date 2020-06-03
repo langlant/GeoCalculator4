@@ -13,16 +13,18 @@ const HistoryScreen = ({ route, navigation }) => {
     const rHistory = ({item, index}) =>{
         return (
     
-        <TouchableHighlight onPress={()=> buttonPress(item)}>
+        <TouchableOpacity onPress={()=> buttonPress(item)}>
             <View>
                  <Text> Start: {item.p1.lat1}, {item.p1.lon1}</Text>
                  <Text> End: {item.p2.lat2}, {item.p2.lon2}</Text>
                  <Text>Time Stamp: {item.timestamp}</Text>
             </View>
-        </TouchableHighlight>
+            navigation.navigate('Geo Calculator', {p1.lat1, p1.lon1, p2.lat2, p2.lon2});
+        </TouchableOpacity>
         
         );
     }
+
     return(
         <FlatList  
             keyExtractor={(item) => item.timestamp}
