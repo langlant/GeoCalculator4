@@ -1,7 +1,7 @@
 import React, { useState, useRef,   useEffect } from "react";
 import { StyleSheet, Text, Keyboard, TouchableOpacity, View, TouchableWithoutFeedback, TouchableHighlight } from "react-native";
 import { Button, Input} from "react-native-elements";
-//import {initGeoCalcDb, writeData, setupDataListener} from '../helpers/fb-geocalculator';
+import {initGeoCalcDb, storeData, updateData, deleteData, setupDataListener} from '../helpers/fb-geocalculator';
 import CalculatorScreen from './CalculatorScreen';
 import { FlatList } from "react-native-gesture-handler";
 
