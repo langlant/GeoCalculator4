@@ -243,7 +243,7 @@ const CalculatorScreen = ({ route, navigation }) => {
             title="Calculate"
             onPress={() => 
               doCalculation(distanceUnits, bearingUnits),
-              writeData('score', {history})
+              storeData('score', {history})
             }
           />
         </View>
