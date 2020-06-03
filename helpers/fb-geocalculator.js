@@ -7,7 +7,7 @@ export function initGeoCalcDB()
   firebase.initializeApp(firebaseConfig);
 }
 
-export function storeData(item) {
+export function writeData(item) {
   firebase.database().ref('geocalcData/').push(item);
 }
 
@@ -18,16 +18,16 @@ export function updateData(item) {
 }
 
 export function deleteData(item) {
-  firebase.database().ref(`geocalcDAta/${item.id}`).remove();
+  firebase.database().ref(`geocalcData/${item.id}`).remove();
 }
 
-export function setupReminderListener(updateFunc) {
-  console.log('setupReminderListener called');
+export function setupDataListener(updateFunc) {
+  console.log('setupDataListener called');
   firebase
     .database()
     .ref('geocalcData/')
     .on('value', (snapshot) => {
-      console.log('setupReminderListener fires up with: ', snapshot);
+      console.log('setupDataListener fires up with: ', snapshot);
       if (snapshot?.val()) {
         const fbObject = snapshot.val();
         const newArr = [];

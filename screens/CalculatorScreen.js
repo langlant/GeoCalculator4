@@ -2,7 +2,7 @@ import React, { useState, useRef,   useEffect } from "react";
 import { StyleSheet, Text, Keyboard, TouchableOpacity, View, TouchableWithoutFeedback } from "react-native";
 import { Button, Input } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
-import {initGeoCalcDB, storeData, updateData, deleteData, setupDataListener} from '../helpers/fb-geocalculator';
+import {initGeoCalcDB, writeData, updateData, deleteData, setupDataListener} from '../helpers/fb-geocalculator';
 
 
 
@@ -177,7 +177,7 @@ const CalculatorScreen = ({ route, navigation }) => {
             selectedDistanceUnits,
             selectedBearingUnits,
           });
-          storeData('score', {lat1}, {lon1}, {lat2}, {lon2});
+          writeData('score', {lat1}, {lon1}, {lat2}, {lon2});
         }}
       >
         <Text style={styles.headerButton}> Save </Text>
@@ -243,7 +243,7 @@ const CalculatorScreen = ({ route, navigation }) => {
             title="Calculate"
             onPress={() => 
               doCalculation(distanceUnits, bearingUnits),
-              storeData('score', {history})
+              writeData('score', {history})
             }
           />
         </View>
