@@ -7,17 +7,17 @@ export function initGeoCalcDB()
   firebase.initializeApp(firebaseConfig);
 }
 
-export function storeReminderItem(item) {
+export function storeData(item) {
   firebase.database().ref('geocalcData/').push(item);
 }
 
-export function updateReminder(item) {
+export function updateData(item) {
   const key = item.id;
   delete item.id;
   firebase.database().ref(`geocalcData/${key}`).set(item);
 }
 
-export function deleteReminder(item) {
+export function deleteData(item) {
   firebase.database().ref(`geocalcDAta/${item.id}`).remove();
 }
 
